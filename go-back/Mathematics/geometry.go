@@ -51,3 +51,7 @@ func (obj Circle) GetPerimeter() float64 {
 func (obj Circle) GetSquare() float64 {
 	return math.Pi * obj.R * obj.R
 }
+
+func (obj Circle) GetVolume() float64 {
+	return 4.0 / 3.0 * math.Pi * obj.R * obj.R * obj.R
+}

@@ -84,6 +84,10 @@ func (ml *MathLogger) CircleProcess(c *gin.Context) {
 		s := ci.GetSquare()
 		ml.l.Println("Площадь найдена")
 		c.JSON(http.StatusOK, s)
+	} else if rq.Type == "volume" {
+		v := ci.GetVolume()
+		ml.l.Println("Объем найден")
+		c.JSON(http.StatusOK, v)
 	} else {
 		ml.l.Println("Неизвестное действие с фигурой")
 		c.JSON(http.StatusOK, gin.H{"response": "Invalid process"})
