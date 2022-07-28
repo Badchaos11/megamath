@@ -1,0 +1,88 @@
+package handlers
+
+import (
+	"github.com/Badchaos11/megamath/go-back/Mathematics"
+	"github.com/gin-gonic/gin"
+	"net/http"
+)
+
+func GetPerimeter(c *gin.Context) {
+	figureType := c.Params.ByName("type")
+	if figureType == "triangle" {
+		p, err := trianglePerimeter(c)
+		if err != nil {
+			c.JSON(http.StatusBadRequest, err.Error())
+		} else {
+			c.JSON(http.StatusOK, gin.H{"perimeter": p})
+		}
+	} else if figureType == "four" {
+		p, err := fourPerimeter(c)
+		if err != nil {
+			c.JSON(http.StatusBadRequest, err.Error())
+		} else {
+			c.JSON(http.StatusOK, gin.H{"perimeter": p})
+		}
+	} else if figureType == "rectangle" {
+		p, err := rectanglePerimeter(c)
+		if err != nil {
+			c.JSON(http.StatusBadRequest, err.Error())
+		} else {
+			c.JSON(http.StatusOK, gin.H{"perimeter": p})
+		}
+	}
+}
+
+func trianglePerimeter(c *gin.Context) (float64, error) {
+	type Request struct {
+		Type string  `json:"type,omitempty"`
+		A    float64 `json:"a,omitempty"`
+		B    float64 `json:"b,omitempty"`
+		C    float64 `json:"c,omitempty"`
+	}
+	var rt Request
+	var tp Mathematics.Triangle
+	if err := c.ShouldBindJSON(&rt); err != nil {
+		return 0, err
+	}
+	tp.A = rt.A
+	tp.B = rt.B
+	tp.C = rt.C
+
+	return tp.GetPerimeter(), nil
+
+}
+
+func fourPerimeter(c *gin.Context) (float64, error) {
+	type Request struct {
+		Type string  `json:"type,omitempty"`
+		A    float64 `json:"a,omitempty"`
+	}
+
+	var f Mathematics.FourSquare
+	var r Request
+
+	if err := c.ShouldBindJSON(&r); err != nil {
+		return 0, err
+	}
+	f.A = r.A
+
+	return f.GetPerimeter(), nil
+}
+
+func rectanglePerimeter(c *gin.Context) (float64, error) {
+	type Request struct {
+		Type string  `json:"type,omitempty"`
+		A    float64 `json:"a,omitempty"`
+		B    float64 `json:"b,omitempty"`
+	}
+	var r Request
+	var rec Mathematics.Rectangle
+
+	if err := c.ShouldBindJSON(&r); err != nil {
+		return 0, err
+	}
+	rec.A = r.A
+	rec.B = r.B
+
+	return rec.GetPerimeter(), nil
+}
