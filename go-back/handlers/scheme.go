@@ -32,3 +32,9 @@ type Circle struct {
 	Type string  `json:"type,omitempty"`
 	R    float64 `json:"r,omitempty"`
 }
+
+type InputQE struct {
+	A float64 `json:"a,omitempty"`
+	B float64 `json:"b,omitempty"`
+	C float64 `json:"c,omitempty"`
+}
