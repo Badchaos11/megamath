@@ -66,3 +66,26 @@ func (ml *MathLogger) RectangleProcess(c *gin.Context) {
 		c.JSON(http.StatusOK, gin.H{"response": "Неправильный тип действия, выберите доступный."})
 	}
 }
+
+func (ml *MathLogger) CircleProcess(c *gin.Context) {
+	var rq Circle
+	if err := c.ShouldBindJSON(&rq); err != nil {
+		ml.l.Println(err.Error())
+		c.JSON(http.StatusBadRequest, err.Error())
+	}
+	var ci Mathematics.Circle
+	ci.R = rq.R
+
+	if rq.Type == "longitude" {
+		l := ci.GetPerimeter()
+		ml.l.Println("Длина окружности найдена")
+		c.JSON(http.StatusOK, l)
+	} else if rq.Type == "square" {
+		s := ci.GetSquare()
+		ml.l.Println("Площадь найдена")
+		c.JSON(http.StatusOK, s)
+	} else {
+		ml.l.Println("Неизвестное действие с фигурой")
+		c.JSON(http.StatusOK, gin.H{"response": "Invalid process"})
+	}
+}

@@ -41,3 +41,13 @@ func (obj Rectangle) GetPerimeter() float64 {
 func (obj Rectangle) GetSquare() float64 {
 	return obj.A * obj.B
 }
+
+// Круг и шар
+
+func (obj Circle) GetPerimeter() float64 {
+	return 2 * math.Pi * obj.R
+}
+
+func (obj Circle) GetSquare() float64 {
+	return math.Pi * obj.R * obj.R
+}

@@ -27,3 +27,8 @@ type Rectangle struct {
 	A    float64 `json:"a,omitempty"`
 	B    float64 `json:"b,omitempty"`
 }
+
+type Circle struct {
+	Type string  `json:"type,omitempty"`
+	R    float64 `json:"r,omitempty"`
+}

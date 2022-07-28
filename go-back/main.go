@@ -15,6 +15,7 @@ func main() {
 	router.POST("/triangle", ml.TriangleProcess)
 	router.POST("/four", ml.FourProcess)
 	router.POST("/rectangle", ml.RectangleProcess)
+	router.POST("/circle", ml.CircleProcess)
 
 	if err := router.Run("localhost:9090"); err != nil {
 		l.Fatalf("Не удалось запустить сервер", err)

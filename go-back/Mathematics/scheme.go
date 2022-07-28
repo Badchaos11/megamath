@@ -14,3 +14,7 @@ type Rectangle struct {
 	A float64
 	B float64
 }
+
+type Circle struct {
+	R float64
+}
