@@ -1,22 +1,25 @@
 package handlers
 
 import (
+	"fmt"
 	"github.com/Badchaos11/megamath/go-back/Mathematics"
 	"github.com/gin-gonic/gin"
 )
 
 func trianglePerimeter(c *gin.Context) (float64, error) {
 	type Request struct {
-		Type string  `json:"type,omitempty"`
-		A    float64 `json:"a,omitempty"`
-		B    float64 `json:"b,omitempty"`
-		C    float64 `json:"c,omitempty"`
+		A float64 `json:"a,omitempty"`
+		B float64 `json:"b,omitempty"`
+		C float64 `json:"c,omitempty"`
 	}
 	var rt Request
 	var tp Mathematics.Triangle
 	if err := c.ShouldBindJSON(&rt); err != nil {
+		fmt.Println(rt)
+		fmt.Println(err)
 		return 0, err
 	}
+	fmt.Println(rt)
 	tp.A = rt.A
 	tp.B = rt.B
 	tp.C = rt.C

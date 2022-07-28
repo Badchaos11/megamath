@@ -12,8 +12,9 @@ func main() {
 	ml := handlers.NewLogger(l)
 	router := gin.Default()
 
-	router.POST("/perimeter", ml.GetPerimeter)
-	router.POST("/square", ml.GetSquare)
+	router.POST("/triangle", ml.TriangleProcess)
+	router.POST("/four", ml.FourProcess)
+	router.POST("/rectangle", ml.RectangleProcess)
 
 	if err := router.Run("localhost:9090"); err != nil {
 		l.Fatalf("Не удалось запустить сервер", err)
