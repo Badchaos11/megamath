@@ -5,6 +5,7 @@ import "math"
 type Geometry interface {
 	GetPerimeter()
 	GetSquare()
+	GetVolume()
 }
 
 // Геометрия треугольники
@@ -27,6 +28,10 @@ func (obj FourSquare) GetPerimeter() float64 {
 
 func (obj FourSquare) GetSquare() float64 {
 	return obj.A * obj.A
+}
+
+func (obj FourSquare) GetVolume() float64 {
+	return obj.A * obj.A * obj.A
 }
 
 func (obj Rectangle) GetPerimeter() float64 {

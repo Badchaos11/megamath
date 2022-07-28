@@ -40,6 +40,9 @@ func (ml *MathLogger) FourProcess(c *gin.Context) {
 	} else if rq.Type == "square" {
 		s := f.GetSquare()
 		c.JSON(http.StatusOK, s)
+	} else if rq.Type == "volume" {
+		v := f.GetVolume()
+		c.JSON(http.StatusOK, v)
 	} else {
 		c.JSON(http.StatusOK, gin.H{"response": "Неправильный тип действия, выберите доступный."})
 	}
