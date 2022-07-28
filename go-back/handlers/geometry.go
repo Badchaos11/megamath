@@ -17,10 +17,10 @@ func (ml *MathLogger) TriangleProcess(c *gin.Context) {
 	t.C = rq.C
 	if rq.Type == "perimeter" {
 		p := t.GetPerimeter()
-		c.JSON(http.StatusOK, p)
+		c.JSON(http.StatusOK, gin.H{"result": p})
 	} else if rq.Type == "square" {
 		s := t.GetSquare()
-		c.JSON(http.StatusOK, s)
+		c.JSON(http.StatusOK, gin.H{"result": s})
 	} else {
 		c.JSON(http.StatusOK, gin.H{"response": "Неправильный тип действия, выберите доступный."})
 	}
@@ -36,13 +36,13 @@ func (ml *MathLogger) FourProcess(c *gin.Context) {
 
 	if rq.Type == "perimeter" {
 		p := f.GetPerimeter()
-		c.JSON(http.StatusOK, p)
+		c.JSON(http.StatusOK, gin.H{"result": p})
 	} else if rq.Type == "square" {
 		s := f.GetSquare()
-		c.JSON(http.StatusOK, s)
+		c.JSON(http.StatusOK, gin.H{"result": s})
 	} else if rq.Type == "volume" {
 		v := f.GetVolume()
-		c.JSON(http.StatusOK, v)
+		c.JSON(http.StatusOK, gin.H{"result": v})
 	} else {
 		c.JSON(http.StatusOK, gin.H{"response": "Неправильный тип действия, выберите доступный."})
 	}
@@ -58,10 +58,10 @@ func (ml *MathLogger) RectangleProcess(c *gin.Context) {
 	r.B = rq.B
 	if rq.Type == "perimeter" {
 		p := r.GetPerimeter()
-		c.JSON(http.StatusOK, p)
+		c.JSON(http.StatusOK, gin.H{"result": p})
 	} else if rq.Type == "square" {
 		s := r.GetSquare()
-		c.JSON(http.StatusOK, s)
+		c.JSON(http.StatusOK, gin.H{"result": s})
 	} else {
 		c.JSON(http.StatusOK, gin.H{"response": "Неправильный тип действия, выберите доступный."})
 	}
@@ -79,15 +79,15 @@ func (ml *MathLogger) CircleProcess(c *gin.Context) {
 	if rq.Type == "longitude" {
 		l := ci.GetPerimeter()
 		ml.l.Println("Длина окружности найдена")
-		c.JSON(http.StatusOK, l)
+		c.JSON(http.StatusOK, gin.H{"result": l})
 	} else if rq.Type == "square" {
 		s := ci.GetSquare()
 		ml.l.Println("Площадь найдена")
-		c.JSON(http.StatusOK, s)
+		c.JSON(http.StatusOK, gin.H{"result": s})
 	} else if rq.Type == "volume" {
 		v := ci.GetVolume()
 		ml.l.Println("Объем найден")
-		c.JSON(http.StatusOK, v)
+		c.JSON(http.StatusOK, gin.H{"result": v})
 	} else {
 		ml.l.Println("Неизвестное действие с фигурой")
 		c.JSON(http.StatusOK, gin.H{"response": "Invalid process"})
