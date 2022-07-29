@@ -13,16 +13,18 @@ func (ml *MathLogger) SolveQuadraticEquation(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, err.Error())
 	}
 	var qe Mathematics.QuadraticEquation
+	var re Response
 	qe.A = rq.A
 	qe.B = rq.B
 	qe.C = rq.C
 
 	response := qe.SolveQuadraticEquation()
+	re.Result = response
 	if response.D < 0 {
 		ml.l.Println("Уравнние успешно решено")
 		c.JSON(http.StatusOK, gin.H{"discriminant": response.D, "result": "Корней нет"})
 	} else {
 		ml.l.Println("Уравнение успешно решено")
-		c.JSON(http.StatusOK, gin.H{"discriminant": response.D, "X1": response.X1, "X2": response.X2})
+		c.JSON(http.StatusOK, re)
 	}
 }

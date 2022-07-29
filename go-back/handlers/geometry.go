@@ -12,12 +12,14 @@ func (ml *MathLogger) TriangleProcess(c *gin.Context) {
 		c.JSON(http.StatusBadRequest, err.Error())
 	}
 	var t Mathematics.Triangle
+	var rs Response
 	t.A = rq.A
 	t.B = rq.B
 	t.C = rq.C
 	if rq.Type == "perimeter" {
-		p := t.GetPerimeter()
-		c.JSON(http.StatusOK, gin.H{"result": p})
+		rs.Result = t.GetPerimeter()
+		c.JSON(http.StatusOK, rs)
+		//c.JSON(http.StatusOK, gin.H{"result": p})
 	} else if rq.Type == "square" {
 		s := t.GetSquare()
 		c.JSON(http.StatusOK, gin.H{"result": s})

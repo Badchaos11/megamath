@@ -38,3 +38,7 @@ type InputQE struct {
 	B float64 `json:"b,omitempty"`
 	C float64 `json:"c,omitempty"`
 }
+
+type Response struct {
+	Result any `json:"result,omitempty"`
+}
